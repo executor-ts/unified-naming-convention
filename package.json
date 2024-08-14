@@ -1,21 +1,14 @@
 {
-  "name": "@rbxts/unified-naming-convention",
-  "version": "1.0.0",
-  "description": "",
-  "main": "out/init.lua",
-  "scripts": {
-    "build": "rbxtsc",
-    "watch": "rbxtsc -w",
-    "prepublishOnly": "npm run build"
-  },
+  "name": "@executor-ts/unc-types",
+  "version": "0.0.0",
+  "description": "Typings for executors that follow Unified-Naming-Convention",
+  "main": "types/index.d.ts",
+  "types": "types/index.d.ts",
+  "scripts": {},
   "keywords": [],
-  "author": "",
+  "author": "TerminalVibes",
   "license": "ISC",
-  "types": "out/index.d.ts",
-  "files": [
-    "out",
-    "!**/*.tsbuildinfo"
-  ],
+  "files": ["types"],
   "publishConfig": {
     "access": "public"
   },
