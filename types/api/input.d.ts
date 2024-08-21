@@ -1,3 +1,5 @@
+/// <reference no-default-lib="true"/>
+
 declare global {
 	/**
 	 * Returns whether the game's window is in focus. Must be true for other input functions to work.

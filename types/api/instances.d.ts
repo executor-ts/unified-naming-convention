@@ -1,3 +1,5 @@
+/// <reference no-default-lib="true"/>
+
 type Callback = (...args: any[]) => any;
 type ClickDetectorEvents = "MouseClick" | "RightMouseClick" | "MouseHoverEnter" | "MouseHoverLeave";
 

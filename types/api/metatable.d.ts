@@ -1,3 +1,5 @@
+/// <reference no-default-lib="true"/>
+
 interface HookableMetatable {
 	__namecall(this: any, ...args: any[]): any;
 	__index(this: any, key: any): any;
