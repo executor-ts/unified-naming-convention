@@ -1,6 +1,6 @@
 {
   "name": "@executor-ts/unc-types",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Typings for executors that follow Unified-Naming-Convention",
   "main": "types/index.d.ts",
   "types": "types/index.d.ts",

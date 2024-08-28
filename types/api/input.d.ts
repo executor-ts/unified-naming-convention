@@ -65,5 +65,19 @@ declare global {
 	 * @param pixels The number of pixels to scroll the mouse.
 	 */
 	function mousescroll(pixels: number): void;
+
+	/**
+	 * Simulates a keycode press with the virtual key code.
+	 * @remarks Keycodes can be found [here](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
+	 * @param key virtual key code to press
+	 */
+	function keypress(key: number): void;
+
+	/**
+	 * Simulates a keycode release with the virtual key code.
+	 * @remarks Keycodes can be found [here](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
+	 * @param key virtual key code to release
+	 */
+	function keyrelease(key: number): void;
 }
 export {};

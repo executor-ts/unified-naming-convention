@@ -3,19 +3,6 @@
 /* eslint-disable roblox-ts/no-namespace-merging */
 declare global {
 	namespace debug {
-		/** @hidden */
-		function traceback(): void;
-		/** @hidden */
-		function profilebegin(): void;
-		/** @hidden */
-		function profileend(): void;
-		/** @hidden */
-		function info(): void;
-		/** @hidden */
-		function setmemorycategory(): void;
-		/** @hidden */
-		function resetmemorycategory(): void;
-
 		/**
 		 * Returns the constant at `index` in the constant table of the function or level `func`.
 		 * Throws an error if the constant does not exist.

@@ -65,7 +65,7 @@ declare global {
 	 * print(Lighting === LightingClone); // false
 	 * ```
 	 */
-	function cloneref(object: Instance): Instance;
+	function cloneref<O extends Instance>(object: O): O;
 
 	/**
 	 * Returns whether objects `a` and `b` both reference the same Instance.
