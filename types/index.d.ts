@@ -13,3 +13,7 @@
 /// <reference path="api/misc.d.ts" />
 /// <reference path="api/scripts.d.ts" />
 /// <reference path="api/websocket.d.ts" />
+
+interface DataModel {
+	HttpGet(url: string): string;
+}

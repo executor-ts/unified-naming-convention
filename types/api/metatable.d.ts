@@ -1,30 +1,30 @@
 /// <reference no-default-lib="true"/>
 
 interface HookableMetatable {
-	__namecall(this: any, ...args: any[]): any;
-	__index(this: any, key: any): any;
-	__newindex(this: any, key: any, value: any): void;
-	__call(this: any, ...args: any[]): any;
-	__tostring(this: any): string;
-	__len(this: any): number;
-	__unm(this: any): any;
-	__add(this: any, rhs: any): any;
-	__sub(this: any, rhs: any): any;
-	__mul(this: any, rhs: any): any;
-	__div(this: any, rhs: any): any;
-	__mod(this: any, rhs: any): any;
-	__pow(this: any, rhs: any): any;
-	__concat(this: any, rhs: any): any;
-	__eq(this: any, rhs: any): boolean;
-	__lt(this: any, rhs: any): boolean;
-	__le(this: any, rhs: any): boolean;
-	__gc(this: any): void;
+	__namecall(this: unknown, ...args: any[]): any;
+	__index(this: unknown, key: any): any;
+	__newindex(this: unknown, key: any, value: any): void;
+	__call(this: unknown, ...args: any[]): any;
+	__tostring(this: unknown): string;
+	__len(this: unknown): number;
+	__unm(this: unknown): any;
+	__add(this: unknown, rhs: any): any;
+	__sub(this: unknown, rhs: any): any;
+	__mul(this: unknown, rhs: any): any;
+	__div(this: unknown, rhs: any): any;
+	__mod(this: unknown, rhs: any): any;
+	__pow(this: unknown, rhs: any): any;
+	__concat(this: unknown, rhs: any): any;
+	__eq(this: unknown, rhs: any): boolean;
+	__lt(this: unknown, rhs: any): boolean;
+	__le(this: unknown, rhs: any): boolean;
+	__gc(this: unknown): void;
 }
 interface CoreMetatable extends HookableMetatable {
 	__mode?: "k" | "v" | "kv" | "s";
 	__metatable?: string;
 }
-type HookableMetamethods<O> = keyof HookableMetatable;
+type HookableMetamethods = keyof HookableMetatable;
 
 declare global {
 	/**
@@ -84,11 +84,11 @@ declare global {
 	 * });
 	 * ```
 	 */
-	function hookmetamethod<O, M extends HookableMetamethods<O>>(
+	function hookmetamethod<O, M extends HookableMetamethods>(
 		object: O,
 		method: M,
 		hook: HookableMetatable[M],
-	): (object: O, ...args: Parameters<HookableMetatable[M]>) => any;
+	): (object: unknown, ...args: Parameters<HookableMetatable[M]>) => unknown;
 
 	/**
 	 * Returns the name of the method that invoked the `__namecall` metamethod.
