@@ -1,7 +1,7 @@
 {
-  "name": "@executor-ts/unc-types",
-  "version": "0.0.3",
-  "description": "Typings for executors that follow Unified-Naming-Convention",
+  "name": "@executor-ts/types",
+  "version": "1.0.0",
+  "description": "Typings for executors that follow 'Unified Naming Convention'",
   "main": "types/index.d.ts",
   "types": "types/index.d.ts",
   "scripts": {},
