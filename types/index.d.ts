@@ -1,5 +1,6 @@
 /// <reference no-default-lib="true"/>
 /// <reference types="@rbxts/types"/>
+/// <reference types="@rbxts/types/plugin.d.ts" />
 /// <reference path="api/cache.d.ts" />
 /// <reference path="api/closures.d.ts" />
 /// <reference path="api/console.d.ts" />

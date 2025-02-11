@@ -1,24 +1,24 @@
 /// <reference no-default-lib="true"/>
 
 interface HookableMetatable {
-	__namecall(this: unknown, ...args: any[]): any;
-	__index(this: unknown, key: any): any;
-	__newindex(this: unknown, key: any, value: any): void;
-	__call(this: unknown, ...args: any[]): any;
-	__tostring(this: unknown): string;
-	__len(this: unknown): number;
-	__unm(this: unknown): any;
-	__add(this: unknown, rhs: any): any;
-	__sub(this: unknown, rhs: any): any;
-	__mul(this: unknown, rhs: any): any;
-	__div(this: unknown, rhs: any): any;
-	__mod(this: unknown, rhs: any): any;
-	__pow(this: unknown, rhs: any): any;
-	__concat(this: unknown, rhs: any): any;
-	__eq(this: unknown, rhs: any): boolean;
-	__lt(this: unknown, rhs: any): boolean;
-	__le(this: unknown, rhs: any): boolean;
-	__gc(this: unknown): void;
+	__namecall(obj: unknown, ...args: unknown[]): unknown;
+	__index(obj: unknown, key: unknown): unknown;
+	__newindex(obj: unknown, key: unknown, value: unknown): void;
+	__call(obj: unknown, ...args: unknown[]): unknown;
+	__tostring(obj: unknown): string;
+	__len(obj: unknown): number;
+	__unm(obj: unknown): unknown;
+	__add(obj: unknown, rhs: unknown): unknown;
+	__sub(obj: unknown, rhs: unknown): unknown;
+	__mul(obj: unknown, rhs: unknown): unknown;
+	__div(obj: unknown, rhs: unknown): unknown;
+	__mod(obj: unknown, rhs: unknown): unknown;
+	__pow(obj: unknown, rhs: unknown): unknown;
+	__concat(obj: unknown, rhs: unknown): unknown;
+	__eq(obj: unknown, rhs: unknown): boolean;
+	__lt(obj: unknown, rhs: unknown): boolean;
+	__le(obj: unknown, rhs: unknown): boolean;
+	__gc(obj: unknown): void;
 }
 interface CoreMetatable extends HookableMetatable {
 	__mode?: "k" | "v" | "kv" | "s";
@@ -56,7 +56,7 @@ declare global {
 	 * print(getmetatable(object)); // Hello, world!
 	 * ```
 	 */
-	function setrawmetatable(object: any, metatable: CoreMetatable): void;
+	function setrawmetatable(object: unknown, metatable: CoreMetatable): void;
 
 	/**
 	 * Replaces `func` with `hook` internally, where `hook` will be invoked in place of `func` when called.
@@ -68,19 +68,19 @@ declare global {
 	 *
 	 * @remarks
 	 * The function `hook` is **not** allowed to yield or block the thread.
-	 * Try not to invoke `method` from within the function `hook`!
-	 * For example, do not index a property of an Instance from within a hook to `__index`.
+	 * Try not to invoke the hooked metamethod directly, as it will be recursive and potentially crash!
+	 * Ensure that you are explicitly defining the types for the replacement closure (TS limitations!).
+	 *
 	 *
 	 * @example
 	 * Prevents the use of `LocalPlayer:Kick()`:
 	 * ```typescript
-	 * const LocalPlayer = game.GetService("Players").LocalPlayer;
-	 * const __index = hookmetamethod(game, "__namecall", function (...args) {
-	 *      const method = getnamecallmethod();
-	 *      if (this === LocalPlayer && method === "Kick") {
-	 *          coroutine.yield();
-	 *      }
-	 *      return __index(this, ...args);
+	 * const __namecall = hookmetamethod(game, "__namecall",  (obj, ...args: unknown[]): unknown => {
+	 * 	const method = getnamecallmethod();
+	 * 	if (obj === LocalPlayer && method === "Kick") {
+	 * 		coroutine.yield();
+	 * 	}
+	 * 	return __namecall(obj, ...args);
 	 * });
 	 * ```
 	 */
@@ -88,7 +88,7 @@ declare global {
 		object: O,
 		method: M,
 		hook: HookableMetatable[M],
-	): (object: unknown, ...args: Parameters<HookableMetatable[M]>) => unknown;
+	): (...args: unknown[]) => never;
 
 	/**
 	 * Returns the name of the method that invoked the `__namecall` metamethod.
@@ -101,10 +101,10 @@ declare global {
 	 * const LocalPlayer = game.GetService("Players").LocalPlayer;
 	 * const __index = hookmetamethod(game, "__namecall", function (...args) {
 	 *      const method = getnamecallmethod();
-	 *      if (this === LocalPlayer && method === "Kick") {
+	 *      if (obj === LocalPlayer && method === "Kick") {
 	 *          coroutine.yield();
 	 *      }
-	 *      return __index(this, ...args);
+	 *      return __index(obj, ...args);
 	 * });
 	 * ```
 	 */
@@ -123,7 +123,7 @@ declare global {
 	 * print(isreadonly(object)); // true
 	 * ```
 	 */
-	function isreadonly(object: any): boolean;
+	function isreadonly(object: unknown): boolean;
 
 	/**
 	 * Sets whether `object` is frozen or read-only.
@@ -142,7 +142,7 @@ declare global {
 	 * print(isreadonly(object)); // false
 	 * ```
 	 */
-	function setreadonly(object: any, readonly: boolean): void;
+	function setreadonly(object: unknown, readonly: boolean): void;
 }
 
 export {};
